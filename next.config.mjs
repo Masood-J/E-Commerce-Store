@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+        domains: [
+            'm.media-amazon.com',
+            // Add any other external image hosts here (e.g., 'cdn.shopify.com', 'fakestoreapi.com')
+        ],
+    },
+};
 
 export default nextConfig;
