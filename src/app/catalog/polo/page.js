@@ -36,7 +36,7 @@ export default function CatalogPage() {
             <main className={`mt-8 pt-5`}>
                 <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 place-items-center`}>
                     {products.map(product => (
-                        <ItemCard key={product.id} src={product.image} name={product.name} category={product.category}
+                        <ItemCard key={product.id} id={product.id} src={product.image} name={product.name} category={product.category}
                                   price={product.price}></ItemCard>))}
                 </div>
             </main>
@@ -48,7 +48,9 @@ export default function CatalogPage() {
 
                 <div className={`fixed inset-0 bg-black/20  flex justify-center items-center`}
                      onClick={addItem}>
-                    <AddItems addItem={addItem} fetchProducts={fetchProducts}></AddItems>
+                    <AddItems addItem={addItem} fetchProducts={()=>{
+                        fetchProducts();
+                    }}></AddItems>
                 </div>
             )
 

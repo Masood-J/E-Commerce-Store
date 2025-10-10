@@ -1,5 +1,6 @@
 import HeroCarousal from "@/components/ui/HeroCarousal"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
 
@@ -33,17 +34,20 @@ export default function Home() {
             {featured_products.map((item, i) => {
                 return (<div key={item.id}
                              className={`relative gap-2 w-60 h-60 cursor-pointer hover:scale-105 duration-350 transition-all ease-in-out`}>
-                    <Image
-                        src={item.image}
-                        width={200}
-                        height={20}
-                        alt={item.name}
-                        className="object-cover w-full h-full brightness-80 rounded-md"
-                    />     <h2
-                    className={`absolute inset-0 flex justify-center items-center text-white font-dm-sans font-bold text-3xl`}>{item.name}</h2>
+                    <Link href={item.link}>
+                        <Image
+                            src={item.image}
+                            width={200}
+                            height={20}
+                            alt={item.name}
+                            className="object-cover w-full h-full brightness-80 rounded-md"
+                        />     <h2
+                        className={`absolute inset-0 flex justify-center items-center text-white font-dm-sans font-bold text-3xl`}>{item.name}</h2>
+                    </Link>
                 </div>)
             })}
         </div>
         <h2 className={`text-center text-5xl font-pep my-14 `}>New Arrivals</h2>
+
     </main>);
 }
