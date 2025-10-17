@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CartWrapper from "@/components/ui/CartWrapper";
 import Cart from "@/context/CartContext";
-
+import ScrollTop from "@/components/ui/ScrollTop";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Clothing Store",
+  title: "Urban Aura",
   description: "Implementation Of An Online E-Commerace Store",
 };
 
@@ -23,13 +23,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
+      <ScrollTop></ScrollTop>
+<div id="scroll-container" className={`h-screen scrollbar-thin overflow-y-scroll scrollbar-track-transparent`}>
       <Cart>
 <CartWrapper>
     {children}
 </CartWrapper>
       </Cart>
+</div>
       </body>
     </html>
   );

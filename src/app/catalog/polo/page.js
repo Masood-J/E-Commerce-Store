@@ -10,12 +10,12 @@ import {collection, getDocs, addDoc} from "firebase/firestore";
 import ItemCard from "@/components/ui/ItemCard";
 import {useEffect, useState} from "react";
 import AddItems from "@/components/ui/AddItems";
+import ScrollTop from "@/components/ui/ScrollTop";
 
 export default function CatalogPage() {
     const [products, setProducts] = useState([]);
     const [IsAdding, setIsAdding] = useState(false);
-
-
+    const [loading, setLoading] = useState(true);
     const addItem = () => {
         setIsAdding(prevState => !prevState);
     }
@@ -26,13 +26,21 @@ export default function CatalogPage() {
             const querySnapshot = await getDocs(collection(db, "products"));
             const items = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
             setProducts(items)
+            setLoading(false);
         }
 
         fetchProducts();
     }, );
-
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-gray-300 border-t-black"></div>
+            </div>
+        );
+    }
     return (
-        <div className={`min-h-screen `}>
+
+        <div className={`min-h-screen`}>
             <main className={`mt-8 pt-5`}>
                 <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 place-items-center`}>
                     {products.map(product => (

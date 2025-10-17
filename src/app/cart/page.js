@@ -2,18 +2,17 @@
 import {useCart} from "@/context/CartContext"
 import React from "react";
 import Image from "next/image";
-
 export default function Page() {
 
-    const {cart} = useCart();
+    const {cart,totalPrice} = useCart();
     return (
         <div className={`flex flex-col gap-2 mx-10 font-sf`}>
             <h2 className={`font-bold text-[25px]`}>Shopping Basket</h2>
-            <div className={`overflow-y-auto max-h-[450px]`}>
+            <div className={`scrollbar-thin overflow-y-scroll  max-h-[450px]`}>
             <div className={`grid grid-cols-[3fr_1fr_1fr] text-[11px] text-[#000000bf]`}>
                 <div className={``}>PRODUCT</div>
                 <div className={``}>QUANTIIY</div>
-                <div className={`justify-self-end`}>TOTAL</div>
+                <div className={`justify-self-end mr-2`}>TOTAL</div>
             </div>
             <hr className={`h-[1px] border-gray-300`}/>
             <div className={`grid grid-cols-[3fr_1fr_1fr] gap-y-6 pt-5`}>
@@ -32,7 +31,7 @@ export default function Page() {
                         {/* first column */}
                         <div className={`text-[14px]`}>{item.quantity}</div>
                         {/* second column */}
-                        <div className={`justify-self-end text-[14px]`}>${item.price*item.quantity}</div>
+                        <div className={`justify-self-end text-[14px] mr-2`}>${item.price*item.quantity}</div>
                         {/* third column */}
                     </React.Fragment>
                 ))}
@@ -41,14 +40,14 @@ export default function Page() {
 
         </div>
             <hr className={`h-[1px] border-gray-300`}/>
-            <div className={`flex flex-col items-end gap-2`}>
+            <div className={`flex flex-col items-end gap-2 font-sf pb-5`}>
 <div className={`flex flex-row gap-3`}>
-    <h2>Subtotal</h2>
-    <h2>$ Total Price</h2>
+    <h2 className={`font-bold text-[16px]`}>Subtotal</h2>
+    <h2 className={`font-semibold text-[16px] text-[#000000bf]`}>${totalPrice}</h2>
 </div>
-                <p>Taxes and shipping calculated at checkout</p>
-                <button className={`text-center bg-black text-white w-70 h-7`}>CHECK OUT</button>
-                <button className={`text-center border-1 w-70 h-7`}>CONTINUE SHOPPING</button>
+                <p className={`text-[13px]`}>Taxes and shipping calculated at checkout</p>
+                <button className={`text-center bg-black text-white w-80 h-9 text-[13px] cursor-pointer`}>CHECK OUT</button>
+                <button className={`text-center border-1 w-80 h-9 text-[13px] cursor-pointer`}>CONTINUE SHOPPING</button>
             </div>
         </div>
     )

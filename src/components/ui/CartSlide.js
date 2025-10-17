@@ -4,20 +4,18 @@ import {RxCross1} from "react-icons/rx";
 import Image from "next/image";
 import {Trash} from "lucide-react";
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 export default function CartSlide({setShowCart, showCart}) {
 
-    const {cart, removeFromCart} = useCart();
+    const {cart, removeFromCart,totalPrice} = useCart();
     const isEmpty = cart.length === 0;
-    const [totalPrice, setTotalPrice] = useState(0);
-    useEffect(() => {
-        const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
-        setTotalPrice(total);
-    }, [cart])
+
+
     return (
         <>
             <div
-                className="fixed inset-0 bg-black/30 z-10"
+                className="fixed inset-0 backdrop-blur-xs bg-black/10 z-10"
                 onClick={() => setShowCart(false)}
             ></div>
             <motion.div
@@ -75,9 +73,14 @@ export default function CartSlide({setShowCart, showCart}) {
                                             DOORSTEP</h3>
                                         <button className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal`}>CHECK OUT
                                         </button>
-                                        <button className={`border-1 w-full h-10 cursor-pointer text-[13px] font-normal`}>
+                                        <Link href={`/cart`}>
+                                        <button className={`border-1 w-full h-10 cursor-pointer text-[13px] font-normal`}
+                                        onClick={()=>{
+                                            setShowCart(false);
+                                        }}>
                                             VIEW SHOPPING BASKET
                                         </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </>)

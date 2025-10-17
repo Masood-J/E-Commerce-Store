@@ -27,7 +27,8 @@ export default function Home() {
         }]
 
 
-    return (<main className={`pb-10`}>
+    return (
+        <main className={`pb-10`}>
         <HeroCarousal></HeroCarousal>
         <h2 className={`text-center text-5xl font-pep my-14 `}>Browse Products</h2>
         <div className={`flex flex-row gap-2 justify-around mt-5`}>
