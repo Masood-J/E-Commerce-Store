@@ -5,11 +5,13 @@ import Image from "next/image";
 import {Trash} from "lucide-react";
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import {useSelector, useDispatch} from "react-redux";
+import {removeFromCart} from "@/features/cartSlice";
 
 export default function CartSlide({setShowCart, showCart}) {
-
-    const {cart, removeFromCart,totalPrice} = useCart();
+    const {items: cart, totalPrice} = useSelector(state => state.cart);
     const isEmpty = cart.length === 0;
+    const dispatch = useDispatch();
 
 
     return (
@@ -59,7 +61,7 @@ export default function CartSlide({setShowCart, showCart}) {
                                         <div className={`flex flex-col justify-between items-center`}>
                                             <Trash className={`w-3 h-3 cursor-pointer`}
                                                    onClick={() => {
-                                                       removeFromCart(cartItem);
+                                                       dispatch(removeFromCart(cartItem));
                                                    }}></Trash>
                                             <h2 className={`font-extralight text-[14px]`}>${cartItem.price}</h2>
                                         </div>
@@ -67,19 +69,24 @@ export default function CartSlide({setShowCart, showCart}) {
                                 )}
                                 <div className={`mt-3`}>
                                     <hr/>
-                                    <h3 className={`text-end mt-2 font-extralight text-[14px]`}>TOTAL: ${totalPrice}</h3>
+                                    <h3 className={`text-end mt-2 font-extralight text-[14px]`}>TOTAL:
+                                        ${totalPrice}</h3>
                                     <div className={`flex flex-col gap-3 mt-5`}>
-                                        <h3 className={`font-normal text-[10px]`}>*ALL ORDERS MAY TAKE UPTO 7 WORKING DAYS TO BE DELIVERED TO YOUR
+                                        <h3 className={`font-normal text-[10px]`}>*ALL ORDERS MAY TAKE UPTO 7 WORKING
+                                            DAYS TO BE DELIVERED TO YOUR
                                             DOORSTEP</h3>
-                                        <button className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal`}>CHECK OUT
+                                        <button
+                                            className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal`}>CHECK
+                                            OUT
                                         </button>
                                         <Link href={`/cart`}>
-                                        <button className={`border-1 w-full h-10 cursor-pointer text-[13px] font-normal`}
-                                        onClick={()=>{
-                                            setShowCart(false);
-                                        }}>
-                                            VIEW SHOPPING BASKET
-                                        </button>
+                                            <button
+                                                className={`border-1 w-full h-10 cursor-pointer text-[13px] font-normal`}
+                                                onClick={() => {
+                                                    setShowCart(false);
+                                                }}>
+                                                VIEW SHOPPING BASKET
+                                            </button>
                                         </Link>
                                     </div>
                                 </div>

@@ -7,14 +7,18 @@ import {ShoppingBag} from "lucide-react";
 import {User} from "lucide-react";
 import {Search} from "lucide-react";
 import Link from "next/link";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import CartSlide from "@/components/ui/CartSlide";
 import {usePathname} from "next/navigation";
-import {useCart} from "@/context/CartContext";
+import {useSelector} from "react-redux";
 export default function Header({setShowCart}) {
     const pathname = usePathname();
     const isDisabled=pathname==="/cart";
-const{totalItems}=useCart();
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true);
+    },[])
+const totalItems=useSelector(state=>state.cart.totalItems);
     return (
         <header className={`flex flex-row justify-between items-center mx-5 pt-1.5 relative`}>
             <div className={`flex flex-row gap-5 items-center text-2xl font-dm-sans font-normal`}>
@@ -33,7 +37,7 @@ const{totalItems}=useCart();
                          }
 
                      }}>
-                    {totalItems >0 &&
+                    {isClient && totalItems >0 &&
                     <div className={`absolute -top-3 -right-3 bg-red-500 w-4 h-4 rounded-full text-white flex items-center justify-center`}>
                         <h4 className={`text-[10px]`}>{totalItems}</h4>
                     </div>}

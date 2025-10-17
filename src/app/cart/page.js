@@ -2,9 +2,10 @@
 import {useCart} from "@/context/CartContext"
 import React from "react";
 import Image from "next/image";
+import {useSelector} from "react-redux";
 export default function Page() {
+const {items:cart,totalPrice}=useSelector(state=>state.cart);
 
-    const {cart,totalPrice} = useCart();
     return (
         <div className={`flex flex-col gap-2 mx-10 font-sf`}>
             <h2 className={`font-bold text-[25px]`}>Shopping Basket</h2>
