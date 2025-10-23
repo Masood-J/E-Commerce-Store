@@ -1,0 +1,72 @@
+[
+  {
+    "category": "Shirts",
+    "color": "#ffffff",
+    "image": "https://plus.unsplash.com/premium_photo-1661266906739-429a936075cd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=688",
+    "name": "Basic White Shirt",
+    "price": "32.00"
+  },
+  {
+    "category": "Shirts",
+    "color": "#c3dfff",
+    "image": "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=765",
+    "name": "Basic Blue Shirt",
+    "price": "28.50"
+  },
+  {
+    "category": "Shirts",
+    "color": "#404241",
+    "image": "https://images.unsplash.com/photo-1627976238251-a0191b91145b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=691",
+    "name": "Basic Black Shirt",
+    "price": "25.00"
+  },
+  {
+    "category": "Shirts",
+    "color": "#a5c9f5",
+    "image": "https://images.unsplash.com/photo-1593621224943-9df08798f6a1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
+    "name": "Navy-Blue Shirt",
+    "price": "29.99"
+  },
+  {
+    "category": "Shirts",
+    "color": "#a5c9f5",
+    "image": "https://images.unsplash.com/photo-1559718062-108b9039734b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Basic Red Shirt",
+    "price": "29.99"
+  },
+  {
+    "category": "Shirts",
+    "color": "#a5c9f5",
+    "image": "https://images.unsplash.com/photo-1593621224943-9df08798f6a1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
+    "name": "Navy-Blue Shirt",
+    "price": "29.99"
+  },
+  {
+    "category": "Shirts",
+    "color": "#a5c9f5",
+    "image": "https://images.unsplash.com/photo-1619438760059-0e06d4a57520?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Blue Striped Shirt",
+    "price": "29.99"
+  },
+  {
+    "category": "Shirts",
+    "color": "#a5c9f5",
+    "image": "https://images.unsplash.com/photo-1730338022758-ee66340b5e19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Blue Charcoal Shirt",
+    "price": "29.99"
+  },
+  {
+    "category": "Shirts",
+    "color": "#2b2f36",
+    "image": "https://images.unsplash.com/photo-1642259403032-45d7d3997b36?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=686",
+    "name": "Black Striped Shirt",
+    "price": "29.99"
+  },
+  {
+    "category": "Shirts",
+    "color": "#ffffff",
+    "image": "https://images.unsplash.com/photo-1744535814651-b106bb53026d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "White Striped Shirt",
+    "price": "22.99"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "category": "Polo Shirts",
+    "color": "#000080",
+    "image": "https://images.unsplash.com/photo-1631034527645-9c3a92b73abd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=764",
+    "name": "Classic Black Polo Shirt",
+    "price": "23.99"
+  },
+  {
+    "category": "Polo Shirts",
+    "color": "#ffffff",
+    "image": "https://plus.unsplash.com/premium_photo-1727895548212-89f92ff240a2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Mixed Color Polo Shirt",
+    "price": "34.00"
+  },
+  {
+    "category": "Polo Shirts",
+    "color": "black",
+    "image": "https://images.unsplash.com/photo-1749711258539-97bdf8aac4b0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Basic Black Polo Shirt",
+    "price": "27.50"
+  },
+  {
+    "category": "Polo Shirts",
+    "color": "#49ccdf",
+    "image": "https://plus.unsplash.com/premium_photo-1664874603230-db4bddac79db?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Heather Polo Shirt",
+    "price": "31.00"
+  },
+  {
+    "category": "Polo Shirts",
+    "color": "#800000",
+    "image": "https://images.unsplash.com/photo-1749711429870-28a50d39d826?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Gray Basic Polo Shirt",
+    "price": "30.00"
+  },
+  {
+    "category": "Polo Shirts",
+    "color": "#ffffff",
+    "image": "https://images.unsplash.com/photo-1738523686516-54a1daf9c8b4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Graphic White Polo Shirt",
+    "price": "30.00"
+  },
+   {
+    "category": "Polo Shirts",
+    "color": "#6f6965",
+    "image": "https://images.unsplash.com/photo-1658760821966-72d973d96bc6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Light Brown Polo Shirt",
+    "price": "24.00"
+  },
+  {
+    "category": "Polo Shirts",
+    "color": "#111013",
+    "image": "https://images.unsplash.com/photo-1700475247187-5f996bbab51c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Graphic Black Polo Shirt",
+    "price": "24.00"
+  }
+]

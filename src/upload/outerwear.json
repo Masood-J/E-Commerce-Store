@@ -1,0 +1,65 @@
+[
+  {
+    "category": "Outerwear",
+    "color": "#751e1d",
+    "image": "https://images.unsplash.com/photo-1580227695660-bbbf9b982f2b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=686",
+    "name": "Red Zip Up Jacket",
+    "price": "45.00"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#000000",
+    "image": "https://images.unsplash.com/photo-1645973474367-061940e5aa85?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Black Trench Coat",
+    "price": "89.99"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#808080",
+    "image": "https://images.unsplash.com/photo-1645656489892-db23c6f7afed?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Green Trench Coat",
+    "price": "35.50"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#c4b7a6",
+    "image": "https://images.unsplash.com/photo-1612203035569-07e71ccffab0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=735",
+    "name": "Light Brown Sweater",
+    "price": "25.00"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#ffffff",
+    "image": "https://images.unsplash.com/photo-1513089176717-55db930c2e2a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=764",
+    "name": "White Puffer Coat",
+    "price": "25.00"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#c4b7a6",
+    "image": "https://images.unsplash.com/photo-1577508966528-b5b4c391450b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+    "name": "Black Puffer Coat",
+    "price": "25.00"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#c4b7a6",
+    "image": "https://images.unsplash.com/photo-1542744385-3745b6650452?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=764",
+    "name": "Red Pullover Hoodie",
+    "price": "35.00"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#c4b7a6",
+    "image": "https://images.unsplash.com/photo-1612203035569-07e71ccffab0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=735",
+    "name": "Light Brown Sweater",
+    "price": "25.00"
+  },
+  {
+    "category": "Outerwear",
+    "color": "#ffffff",
+    "image": " https://images.unsplash.com/photo-1644364244680-763069a7cf40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=688",
+    "name": "White Puffer Jacket",
+    "price": "40.00"
+  }
+]
