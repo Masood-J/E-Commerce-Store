@@ -2,23 +2,33 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
+import {addToCart} from "@/features/cartSlice";
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 export default function ProductClient({ product }) {
     const [selectedSize, setSelectedSize] = useState(null);
-
+const darkmode=useSelector((state) => state.ui.darkmode);
     const handleSizeSelect = (size) => {
         setSelectedSize(size);
     };
+    const dispatch = useDispatch();
+    const itemObject={
+        name:product.name,
+        category:product.category,
+        price:product.price,
+        src:product.image,
+        id:product.id
+    }
 
     return (
-        <div className="grid grid-cols-[200px_1fr_100px_1fr_200px] gap-2">
-            <div className="col-start-2 place-self-center border-1 p-15">
+        <div className="grid grid-cols-[200px_1fr_100px_1fr_200px] gap-2 min-h-screen">
+            <div className="relative col-start-2 h-[550px] w-full place-self-center self-start overflow-hidden border-1 p-1">
                 <Image
                     src={product.image}
-                    alt="Product Image"
-                    width={300}
-                    height={200}
-                    className=""
+                    alt={product.name || "Product Image"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover"
                 />
             </div>
 
@@ -36,8 +46,26 @@ export default function ProductClient({ product }) {
                     </div>
 
                     <div className="flex flex-col gap-5 font-semibold text-[13px]">
-                        <div>
-                            <h2>COLORS</h2>
+                        <div className={`flex flex-row items-center `}>
+                            <h2 className={`pr-4.5`}>COLORS</h2>
+                            <div className="flex flex-row gap-2 mt-0 cursor-pointer">
+                                {Array.isArray(product.color) ? (
+                                    product.color.map((clr, index) => (
+                                        <div
+                                            key={index}
+                                            className="w-6 h-6 rounded-full border cursor-pointer"
+                                            style={{ backgroundColor: clr }}
+                                            title={clr}
+                                        ></div>
+                                    ))
+                                ) : (
+                                    <div
+                                        className="w-6 h-6 rounded-full border"
+                                        style={{ backgroundColor: product.color }}
+                                        title={product.color}
+                                    ></div>
+                                )}
+                            </div>
                         </div>
 
                         <div className="flex flex-row gap-3 items-center">
@@ -49,10 +77,11 @@ export default function ProductClient({ product }) {
                                         onClick={() => handleSizeSelect(size)}
                                         className={`cursor-pointer border px-2 py-1 rounded ${
                                             selectedSize === size
-                                                ? "bg-black text-white"
-                                                : "hover:bg-gray-100"
+                                                ? `${darkmode?"bg-gray-600":"bg-black"} text-white`
+                                                : `${darkmode?"hover:bg-gray-600":"hover:bg-gray-100"}`
                                         }`}
                                     >
+
                                         {size}
                                     </div>
                                 ))}
@@ -65,7 +94,8 @@ export default function ProductClient({ product }) {
                         </div>
                     </div>
 
-                    <button className="border-1 h-12 text-[12px] cursor-pointer mt-4">
+                    <button className={`border-1 h-12 text-[12px] cursor-pointer mt-4 bg-${darkmode?"[#1E1E1E]":""}`}
+                    onClick={()=>{dispatch(addToCart(itemObject))}}>
                          ADD TO BASKET
                     </button>
                 </div>

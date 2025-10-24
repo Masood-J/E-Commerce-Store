@@ -12,7 +12,7 @@ import {useEffect, useState} from "react";
 import AddItems from "@/components/ui/AddItems";
 import ScrollTop from "@/components/ui/ScrollTop";
 
-export default function CatalogPage() {
+export default function PoloPage() {
     const [products, setProducts] = useState([]);
     const [IsAdding, setIsAdding] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -23,14 +23,14 @@ export default function CatalogPage() {
 
     useEffect(() => {
         async function fetchProducts() {
-            const querySnapshot = await getDocs(collection(db, "products"));
+            const querySnapshot = await getDocs(collection(db, "product", "catalog", "polo"));
             const items = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
             setProducts(items)
             setLoading(false);
         }
 
         fetchProducts();
-    }, );
+    },);
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -44,8 +44,10 @@ export default function CatalogPage() {
             <main className={`mt-8 pt-5`}>
                 <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center`}>
                     {products.map(product => (
-                        <ItemCard key={product.id} id={product.id} src={product.image} name={product.name} category={product.category}
-                                  price={product.price}></ItemCard>))}
+                        <ItemCard key={product.id} id={product.id} src={product.image} name={product.name}
+                                  category={product.category}
+                                  price={product.price}
+                                  path={`polo`}></ItemCard>))}
                 </div>
             </main>
             <div
@@ -56,7 +58,7 @@ export default function CatalogPage() {
 
                 <div className={`fixed inset-0 bg-black/20  flex justify-center items-center`}
                      onClick={addItem}>
-                    <AddItems addItem={addItem} fetchProducts={()=>{
+                    <AddItems addItem={addItem} fetchProducts={() => {
                         fetchProducts();
                     }}></AddItems>
                 </div>

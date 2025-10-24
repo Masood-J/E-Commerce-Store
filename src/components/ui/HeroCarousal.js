@@ -3,25 +3,28 @@ import React, { useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import Link from "next/link";
 const banners = [
     {
         id: 1,
         image: "/male-banner.jpg",
-        heading: "Fall Sale is Here",
-        subtext: "Get Up to 40% off",
+        heading: "Premium Polo Shirts",
+        subtext: "Look Sharp, Stay Comfortable.",
+        link:"catalog/polo"
     },
     {
         id: 2,
         image: "/shirts-banner.jpg",
         heading: "Minimalist Collection",
         subtext: "Essentials for every day.",
+        link:"catalog/shirts"
     },
     {
         id: 3,
         image: "/fashion-banner.jpg",
         heading: "Winter Collection",
         subtext: "Stay warm, stay stylish.",
+        link:"catalog/outerwear"
     },
 ];
 
@@ -42,7 +45,9 @@ export default function HeroCarousel() {
         <div className="relative overflow-hidden" ref={emblaRef}>
             <div className="flex">
                 {banners.map((banner) => (
+
                     <div key={banner.id} className="flex-[0_0_100%] relative h-[80vh] font-sf cursor-pointer">
+                        <Link href={banner.link} >
                         <Image
                             src={banner.image}
                             alt={banner.heading}
@@ -54,6 +59,7 @@ export default function HeroCarousel() {
                             <h1 className="text-6xl md:text-6xl font-bold">{banner.heading}</h1>
                             <p className="mt-4 text-lg">{banner.subtext}</p>
                         </div>
+                        </Link>
                     </div>
                 ))}
             </div>

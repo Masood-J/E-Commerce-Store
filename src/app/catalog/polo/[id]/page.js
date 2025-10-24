@@ -5,7 +5,7 @@ import ProductClient from "@/components/ui/ProductClient";
 
 export default async function PoloCatalog({params}) {
     const {id} = params;
-    const docRef = doc(db, "products", id)
+    const docRef = doc(db, "product","catalog","polo", id)
     const docSnap = await getDoc(docRef);
     if (!docSnap) {
         return (

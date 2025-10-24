@@ -20,7 +20,7 @@ const initialState = {
     totalPrice: initialItems.reduce(
         (acc, item) => acc + item.price * item.quantity,
         0
-    ),
+    ).toFixed(2),
     totalItems: initialItems.length,
 };
 
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const existing = state.items.find((i) => i.id === action.payload.id);
+            const existing = state.items.find((i) => i.id === action.payload.id && i.size === action.payload.size);
             if (existing) {
                 existing.quantity++;
             } else {
@@ -38,21 +38,55 @@ const cartSlice = createSlice({
             state.totalPrice = state.items.reduce(
                 (acc, item) => acc + item.price * item.quantity,
                 0
-            );
+            ).toFixed(2);
             state.totalItems = state.items.length;
             saveCart(state.items);
 
         },
         removeFromCart: (state, action) => {
-            state.items = state.items.filter((i) => i.id !== action.payload.id);
+            state.items = state.items.filter(
+                (i) => !(i.id === action.payload.id && i.size === action.payload.size)
+            );
             state.totalPrice = state.items.reduce(
-                (acc, item) => acc + item.price * item.quantity, 0
-            )
+                (acc, item) => acc + item.price * item.quantity,
+                0
+            ).toFixed(2);
             state.totalItems = state.items.length;
             saveCart(state.items);
-        }
+        },
+        addQuantity: (state, action) => {
+            const item = state.items.find((i) => i.id === action.payload.id && i.size === action.payload.size);
+            if (item) {
+                item.quantity += 1;
+            }
+            state.totalPrice = state.items.reduce(
+                (acc, item) => acc + item.price * item.quantity,
+                0
+            ).toFixed(2);
+            saveCart(state.items);
+        },
+
+        removeQuantity: (state, action) => {
+            const item = state.items.find((i) => i.id === action.payload.id && i.size === action.payload.size);
+            if (item) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    // remove the item completely if quantity is 1
+                    state.items = state.items.filter(
+                        (i) => !(i.id === action.payload.id && i.size === action.payload.size)
+                    );
+                    state.totalItems = state.items.length;
+                }
+            }
+            state.totalPrice = state.items.reduce(
+                (acc, item) => acc + item.price * item.quantity,
+                0
+            ).toFixed(2);
+            saveCart(state.items);
+        },
     }
 })
 
-export const {initializeCart, addToCart, removeFromCart} = cartSlice.actions;
+export const {initializeCart, addToCart, removeFromCart,removeQuantity,addQuantity} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -3,9 +3,13 @@ import {useCart} from "@/context/CartContext"
 import React from "react";
 import Image from "next/image";
 import {useSelector} from "react-redux";
+import {Minus} from "lucide-react";
+import {Plus} from "lucide-react";
+import {useDispatch} from "react-redux";
+import {removeQuantity,addQuantity} from "@/features/cartSlice"
 export default function Page() {
 const {items:cart,totalPrice}=useSelector(state=>state.cart);
-
+const dispatch=useDispatch();
     return (
         <div className={`flex flex-col gap-2 mx-10 font-sf`}>
             <h2 className={`font-bold text-[25px]`}>Shopping Basket</h2>
@@ -27,12 +31,27 @@ const {items:cart,totalPrice}=useSelector(state=>state.cart);
                                 <div className={`text-[12px]`}>
                                     Category: {item.category}
                                 </div>
+                                <div className={`text-[12px]`}>
+                                    Size: {item.size}</div>
                             </div>
                         </div>
                         {/* first column */}
-                        <div className={`text-[14px]`}>{item.quantity}</div>
+                        <div className={`text-[14px] `}>
+                            <div className={`flex flex-row gap-5 border-1 w-24 p-2`}>
+                            <Minus className={`cursor-pointer`}
+                            onClick={()=>{
+dispatch(removeQuantity(item))
+                            }}></Minus>
+                            <div className={`mt-0.5`}>{item.quantity}</div>
+                            <Plus className={`cursor-pointer`}
+                                  onClick={()=>{
+                                      dispatch(addQuantity(item))
+                                  }}
+                            ></Plus>
+                            </div>
+                        </div>
                         {/* second column */}
-                        <div className={`justify-self-end text-[14px] mr-2`}>${item.price*item.quantity}</div>
+                        <div className={`justify-self-end text-[14px] mr-2 mt-1`}>${item.price*item.quantity}</div>
                         {/* third column */}
                     </React.Fragment>
                 ))}

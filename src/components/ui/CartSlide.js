@@ -12,6 +12,7 @@ export default function CartSlide({setShowCart, showCart}) {
     const {items: cart, totalPrice} = useSelector(state => state.cart);
     const isEmpty = cart.length === 0;
     const dispatch = useDispatch();
+    const darkmode = useSelector((state) => state.ui.darkmode);
 
 
     return (
@@ -21,7 +22,7 @@ export default function CartSlide({setShowCart, showCart}) {
                 onClick={() => setShowCart(false)}
             ></div>
             <motion.div
-                className="bg-white fixed w-[500px] right-0 top-0 h-full overflow-y-auto z-20 shadow-lg"
+                className={`${darkmode ? "bg-[#121212]" : "bg-white"} fixed w-[500px] right-0 top-0 h-full overflow-y-auto z-20 shadow-lg`}
                 initial={{x: "100%"}}
                 animate={{x: 0}}
                 exit={{x: "100%"}}
@@ -45,15 +46,24 @@ export default function CartSlide({setShowCart, showCart}) {
                             </button>
                         </div>) : (
                             <>
-                                {cart.map((cartItem) => (
-                                    <div key={cartItem.id} className={`flex flex-row gap-2 justify-between pt-2`}>
+                                {cart.map((cartItem, index) => (
+                                    <div key={`${cartItem.id}-${index}`}
+                                         className={`flex flex-row gap-2 justify-between pt-2`}>
                                         <div className={`flex flex-row gap-3`}>
-                                            <Image src={cartItem.src} width={100} height={100}
-                                                   alt={`clothing picture`}></Image>
+                                            <div className="relative h-[150px] w-[100px] overflow-hidden">
+                                                <Image
+                                                    src={cartItem.src}
+                                                    alt={cartItem.name || "clothing picture"}
+                                                    fill
+                                                    sizes="100px"
+                                                    className="object-cover"
+                                                />
+                                            </div>
                                             <div className={`flex flex-col justify-between`}>
                                                 <div>
                                                     <h2 className={`font-extralight text-[14px]`}>{cartItem.name}</h2>
-                                                    <h3 className={`text-[10px] font-normal`}>{cartItem.category}</h3>
+                                                    <div
+                                                        className={`text-[10px] font-normal`}>{cartItem.category} / {cartItem.size}</div>
                                                 </div>
                                                 <h3 className={`font-extralight text-[14px] text-[#808080]`}>{cartItem.quantity}X</h3>
                                             </div>
@@ -76,7 +86,7 @@ export default function CartSlide({setShowCart, showCart}) {
                                             DAYS TO BE DELIVERED TO YOUR
                                             DOORSTEP</h3>
                                         <button
-                                            className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal`}>CHECK
+                                            className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal `}>CHECK
                                             OUT
                                         </button>
                                         <Link href={`/cart`}>
