@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/firebase";
 import {clearUser, setLogin} from "@/features/userSlice";
+import {setCart} from "@/features/cartSlice";
 import { useRouter } from "next/navigation";
 
 export default function AccountPage() {
@@ -17,6 +18,7 @@ export default function AccountPage() {
             await signOut(auth);
             dispatch(clearUser());
             console.log("User signed out successfully");
+            localStorage.removeItem("cart");
             dispatch(setLogin(false));
             router.push("/account/login");
         } catch (error) {

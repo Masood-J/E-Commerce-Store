@@ -1,24 +1,38 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "@/lib/firebase/firebase";
-import { setUser, clearUser, setLogin } from "@/features/userSlice";
-import { doc, getDoc } from "firebase/firestore";
-
-
+import {onAuthStateChanged} from "firebase/auth";
+import {auth, db} from "@/lib/firebase/firebase";
+import {setUser, clearUser, setLogin} from "@/features/userSlice";
+import {doc, getDoc} from "firebase/firestore";
 
 export const authListener = (dispatch) => {
-    onAuthStateChanged(auth,async (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (user) {
-            const userDoc=await getDoc(doc(db,"users",user.uid));
-            const name=userDoc.exists()?userDoc.data().name:"";
-            dispatch(setUser({
-                name:name,
-                email:user.email,
-                uid:user.uid,
-            }));
-            dispatch(setLogin({}))
-        }
-        else{
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const userDoc = await getDoc(userRef);
+
+                let firstname = "";
+                let lastname = "";
+
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    firstname = data.firstname || "";
+                    lastname = data.lastname || "";
+                }
+
+                dispatch(
+                    setUser({
+                        uid: user.uid,
+                        email: user.email,
+                        name: {firstname, lastname},
+                    })
+                );
+                dispatch(setLogin(true));
+            } catch (error) {
+                console.error("Error getting user info:", error);
+            }
+        } else {
             dispatch(clearUser());
+            dispatch(setLogin(false));
         }
-    })
-}
+    });
+};

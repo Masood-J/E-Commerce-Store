@@ -26,6 +26,7 @@ const router=useRouter();
             await setDoc(doc(db, "users", user.uid), {
                 firstname: form.firstName,
                 lastname: form.lastName,
+                cart:[],
             });
             console.log("Account created successfully!");
             router.push("/account/login");

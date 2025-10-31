@@ -8,6 +8,8 @@ import {doc, getDoc, getDocs} from "firebase/firestore";
 import {useRouter} from "next/navigation";
 import {setLogin} from "@/features/userSlice";
 import Link from "next/link";
+import {LoadCart} from "@/lib/firebase/loadCart";
+import {enableCartSync,disableCartSync} from "@/lib/firebase/syncCart";
 
 export default function AccountManagement() {
     const [email, setEmail] = useState('');
@@ -36,11 +38,18 @@ export default function AccountManagement() {
             }))
             setError("");
             console.log("Signed in:", user.email);
+            disableCartSync();
+            await LoadCart(user.uid,dispatch)
+            enableCartSync();
             router.push("/");
             dispatch(setLogin(true));
         } catch (err) {
-            console.error(err);
-            setError("Invalid email or password")
+            if (err.code === "auth/invalid-email" || err.code === "auth/user-not-found" || err.code === "auth/wrong-password") {
+                setError("Invalid email or password.");
+            } else {
+                setError("Login failed. Please try again.");
+            }
+            dispatch(setLogin(false));
         } finally {
             setLoading(false);
         }
@@ -64,6 +73,7 @@ export default function AccountManagement() {
                     <hr/>
                 </div>
                 <h3 className={`text-[16px] leading-[29px] cursor-pointer`}>FORGOT YOUR PASSWORD?</h3>
+                {error && <p className="text-red-500 mt-3">{error}</p>}
                 {Loading && <p className="text-blue-500 mt-3">Logging in...</p>}
                 <div className={`flex flex-col items-center gap-3 mt-10`}>
                     <button className={`text-[15px] bg-black px-10 py-2 text-white leading-[18px] cursor-pointer`}
