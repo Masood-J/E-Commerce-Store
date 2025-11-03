@@ -4,6 +4,7 @@ import {setUser, clearUser, setLogin} from "@/features/userSlice";
 import {doc, getDoc} from "firebase/firestore";
 
 export const authListener = (dispatch) => {
+
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             try {

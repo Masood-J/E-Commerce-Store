@@ -19,7 +19,7 @@ export default function Header({setShowCart, setShowNav}) {
     const isDisabled = pathname === "/cart";
     const [isClient, setIsClient] = useState(false);
     const darkmode = useSelector(state => state.ui.darkmode);
-    const loggedin=useSelector(state=>state.auth.loggedIn)
+    const loggedin = useSelector(state => state.auth.loggedIn)
     const dispatch = useDispatch();
     useEffect(() => {
         setIsClient(true);
@@ -31,12 +31,12 @@ export default function Header({setShowCart, setShowNav}) {
             return <Moon onClick={() => {
                 dispatch(toggleTheme())
             }}
-            className={`cursor-pointer`}></Moon>
+                         className={`cursor-pointer`}></Moon>
         } else if (darkmode === false) {
             return <Sun onClick={() => {
                 dispatch(toggleTheme())
             }}
-            className={`cursor-pointer`}></Sun>
+                        className={`cursor-pointer`}></Sun>
         }
     }
 
@@ -60,10 +60,10 @@ export default function Header({setShowCart, setShowNav}) {
                 </Link>
             </div>
             <div className={`flex flex-row gap-10 items-center mr-5 `}>
-<LightToggle></LightToggle>
+                <LightToggle></LightToggle>
                 <Search className={``}></Search>
-                <Link href={`${loggedin?"/account":"/account/login"}`}>
-                <User className={`w-4.5 h-4.5 cursor-pointer`}></User>
+                <Link href={`${loggedin ? "/account" : "/account/login"}`}>
+                    <User className={`w-4.5 h-4.5 cursor-pointer`}></User>
                 </Link>
                 <div className={`relative cursor-pointer`}
                      onClick={() => {

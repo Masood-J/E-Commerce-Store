@@ -7,13 +7,13 @@ import {useEffect, useState} from "react";
 import Link from "next/link";
 import {useSelector, useDispatch} from "react-redux";
 import {removeFromCart} from "@/features/cartSlice";
-
+import {useRouter} from "next/navigation";
 export default function CartSlide({setShowCart, showCart}) {
     const {items: cart, totalPrice} = useSelector(state => state.cart);
     const isEmpty = cart.length === 0;
     const dispatch = useDispatch();
     const darkmode = useSelector((state) => state.ui.darkmode);
-
+const router=useRouter();
 
     return (
         <>
@@ -86,7 +86,11 @@ export default function CartSlide({setShowCart, showCart}) {
                                             DAYS TO BE DELIVERED TO YOUR
                                             DOORSTEP</h3>
                                         <button
-                                            className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal `}>CHECK
+                                            className={`bg-black text-white w-full h-10 cursor-pointer text-[13px] font-normal `}
+                                        onClick={()=>{
+router.push(`/checkout`);
+setShowCart(false);
+                                        }}>CHECK
                                             OUT
                                         </button>
                                         <Link href={`/cart`}>

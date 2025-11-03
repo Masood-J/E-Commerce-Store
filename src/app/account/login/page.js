@@ -5,7 +5,7 @@ import {signInWithEmailAndPassword} from "firebase/auth"
 import {auth, db} from "@/lib/firebase/firebase";
 import {setUser} from "@/features/userSlice";
 import {doc, getDoc, getDocs} from "firebase/firestore";
-import {useRouter} from "next/navigation";
+import {useRouter,useSearchParams} from "next/navigation";
 import {setLogin} from "@/features/userSlice";
 import Link from "next/link";
 import {LoadCart} from "@/lib/firebase/loadCart";
@@ -19,6 +19,8 @@ export default function AccountManagement() {
     const [Loading, setLoading] = useState(null);
     const router = useRouter();
     const loggedIn = useSelector(state => state.auth.loggedIn);
+    const searchParams = useSearchParams();
+    const redirect = searchParams.get("redirect") || "/";
     async function HandleLogin() {
         setLoading(true);
         try {
@@ -41,7 +43,7 @@ export default function AccountManagement() {
             disableCartSync();
             await LoadCart(user.uid,dispatch)
             enableCartSync();
-            router.push("/");
+            router.push(redirect);
             dispatch(setLogin(true));
         } catch (err) {
             if (err.code === "auth/invalid-email" || err.code === "auth/user-not-found" || err.code === "auth/wrong-password") {
