@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useSelector} from "react-redux";
 
-async function fetchAllProducts() {
+export async function fetchAllProducts() {
     const categories = ["polo", "outerwear", "casual", "jeans", "shirts"];
 
     let allProducts = [];

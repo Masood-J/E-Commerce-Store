@@ -20,7 +20,9 @@ export default function Header({setShowCart, setShowNav}) {
     const [isClient, setIsClient] = useState(false);
     const darkmode = useSelector(state => state.ui.darkmode);
     const loggedin = useSelector(state => state.auth.loggedIn)
+    const isAdmin = useSelector(state => state.auth.isAdmin);
     const dispatch = useDispatch();
+    const AdminUi=pathname.startsWith("/admin")
     useEffect(() => {
         setIsClient(true);
     }, [])
@@ -43,10 +45,11 @@ export default function Header({setShowCart, setShowNav}) {
     return (
         <header className={`flex flex-row justify-between items-center mx-5 py-5.5 relative`}>
             <div className={`flex flex-row gap-5 items-center text-2xl font-dm-sans font-normal`}>
-                <Menu className={`w-6 h-4.5 cursor-pointer`}
-                      onClick={() => {
-                          setShowNav(true)
-                      }}></Menu>
+                {!AdminUi && <Menu className={`w-6 h-4.5 cursor-pointer`}
+                                   onClick={() => {
+                                       setShowNav(true)
+                                   }}></Menu> }
+
                 <Link href={`/`}>
                     <div className="w-[100px] h-[70px] flex items-center justify-center">
                         <Image
@@ -61,17 +64,18 @@ export default function Header({setShowCart, setShowNav}) {
             </div>
             <div className={`flex flex-row gap-10 items-center mr-5 `}>
                 <LightToggle></LightToggle>
-                <Search className={``}></Search>
-                <Link href={`${loggedin ? "/account" : "/account/login"}`}>
+                {!AdminUi && <Search className={``}></Search>}
+                <Link href={loggedin ? (isAdmin ? "/admin/products" : "/account") : "/account/login"}
+                      >
                     <User className={`w-4.5 h-4.5 cursor-pointer`}></User>
                 </Link>
-                <div className={`relative cursor-pointer`}
-                     onClick={() => {
-                         if (!isDisabled) {
-                             setShowCart(true);
-                         }
+                {!AdminUi &&  <div className={`relative cursor-pointer`}
+                                   onClick={() => {
+                                       if (!isDisabled) {
+                                           setShowCart(true);
+                                       }
 
-                     }}>
+                                   }}>
                     {isClient && totalItems > 0 &&
                         <div
                             className={`absolute -top-3 -right-3 bg-red-500 w-4 h-4 rounded-full text-white flex items-center justify-center`}>
@@ -79,7 +83,8 @@ export default function Header({setShowCart, setShowNav}) {
                         </div>}
                     <ShoppingBag className={`w-4.5 h-4.5 `}
                     ></ShoppingBag>
-                </div>
+                </div>}
+
             </div>
         </header>
     )

@@ -11,6 +11,9 @@ export const authListener = (dispatch) => {
                 const userRef = doc(db, "users", user.uid);
                 const userDoc = await getDoc(userRef);
 
+                const adminRef=doc(db,"admin",user.uid);
+                const adminDoc=await getDoc(adminRef);
+
                 let firstname = "";
                 let lastname = "";
 
@@ -20,11 +23,18 @@ export const authListener = (dispatch) => {
                     lastname = data.lastname || "";
                 }
 
+                if(adminDoc.exists()){
+                    const data = adminDoc.data();
+                    firstname = data.firstname || "";
+                    lastname = data.lastname || "";
+                }
+
                 dispatch(
                     setUser({
                         uid: user.uid,
                         email: user.email,
                         name: {firstname, lastname},
+                        isAdmin:adminDoc.exists(),
                     })
                 );
                 dispatch(setLogin(true));

@@ -92,13 +92,14 @@ export default function AccountPage() {
                             You haven&apos;t placed any orders yet.
                         </h4>
                     )}
-                    <div className="grid grid-cols-4 text-sm font-semibold border-b pb-2">
+
+                    <div className="grid grid-cols-4 text-sm font-semibold border-b pb-2 mx-10">
                         <h3>ORDER</h3>
                         <h3>DATE</h3>
                         <h3>PAYMENT</h3>
                         <h3>TOTAL</h3>
                     </div>
-                    <div className="divide-y">
+                    <div className="divide-y mx-10">
                         {pastOrders.map((order) => (
                             <div
                                 key={order.orderId}
