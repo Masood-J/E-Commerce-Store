@@ -10,20 +10,17 @@ import {useSelector} from "react-redux";
 export async function fetchAllProducts() {
     const categories = ["polo", "outerwear", "casual", "jeans", "shirts"];
 
-    let allProducts = [];
-
-
-    for (const cat of categories) {
+    const promises = categories.map(async (cat) => {
         const querySnapshot = await getDocs(collection(db, "product", "catalog", cat));
-        const items = querySnapshot.docs.map(doc => ({
+        return querySnapshot.docs.map((doc) => ({
             id: doc.id,
             category: cat,
             ...doc.data(),
         }));
-        allProducts = [...allProducts, ...items];
-    }
+    });
 
-    return allProducts;
+    const allCategoryProducts = await Promise.all(promises);
+    return allCategoryProducts.flat();
 }
 
 export default function Search(props) {

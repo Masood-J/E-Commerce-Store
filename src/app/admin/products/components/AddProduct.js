@@ -39,11 +39,12 @@ export default function AddProduct({onSave, onCancel}) {
 
         try {
             setAdding(true);
-            const collectionRef = collection(db, `product/catalog/${formData.category}`);
+            const category=formData.category.toLowerCase();
+            const collectionRef = collection(db, "product","catalog",`${category}`);
             const docRef = await addDoc(collectionRef, {
                 name: formData.name,
                 image: formData.image,
-                category: formData.category.toLowerCase(),
+                category: formData.category,
                 price: formData.price,
             });
 

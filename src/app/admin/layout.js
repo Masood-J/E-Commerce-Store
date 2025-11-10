@@ -11,12 +11,12 @@ export default function Layout({children}) {
 
         <div className={`flex flex-row `}>
             <div className={`flex flex-col gap-3 w-60`}>
-                <DashButton active={pathname==="/admin/dashboard"} icon={<LayoutDashboard className={`w-5 h-5`}></LayoutDashboard>} title={`Dashboard`}
+                <DashButton active={pathname==="/admin/dashboard"} icon={<LayoutDashboard className={`w-4.5 h-4.5`}></LayoutDashboard>} title={`Dashboard`}
                             link={`dashboard`}></DashButton>
-                <DashButton active={pathname === "/admin/products"} icon={<Package className={`w-5 h-5`}></Package>}
+                <DashButton active={pathname === "/admin/products"} icon={<Package className={`w-4.5 h-4.5`}></Package>}
                             title={`Products`} link={`products`}></DashButton>
                 <DashButton active={pathname === "/admin/orders"}
-                            icon={<ShoppingCart className={`w-5 h-5`}></ShoppingCart>} title={`Orders`}
+                            icon={<ShoppingCart className={`w-4.5 h-4.5`}></ShoppingCart>} title={`Orders`}
                             link={`orders`}></DashButton>
 
             </div>
