@@ -12,6 +12,7 @@ import RemoveProduct from "@/app/admin/products/components/RemoveProduct";
 import {Input, Select, Pagination} from 'antd';
 import {useSelector} from "react-redux";
 
+
 export default function ProductsPage() {
     const [allProducts, setAllProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -110,7 +111,8 @@ export default function ProductsPage() {
                 <div className={`w-60 mt-3`}>
                     <Select options={options}
                             defaultValue="all"
-                            onChange={(value) => setSelectedCategory(value)}
+                            onChange={(value) => {setSelectedCategory(value);
+                                setCurrentPage(1);}}
                             className={`w-40`}
 
                     ></Select>
@@ -141,6 +143,7 @@ export default function ProductsPage() {
                     <table className="min-w-full border border-gray-300 rounded-md mt-5 font-sf">
                         <thead className={`${theme ? "bg-gray-400" : "bg-gray-100"} text-left`}>
                         <tr>
+                            <th className={`p-3 border-b border-gray-300`}>No.</th>
                             <th className="p-3 border-b border-gray-300">Image</th>
                             <th className="p-3 border-b border-gray-300">Name</th>
                             <th className="p-3 border-b border-gray-300">Category</th>
@@ -150,11 +153,14 @@ export default function ProductsPage() {
                         </thead>
 
                         <tbody>
-                        {paginatedProducts.map((product) => (
+                        {paginatedProducts.map((product,index) => (
                             <tr
                                 key={product.id}
                                 className={`${theme ? "" : "hover:bg-gray-50"} transition-colors duration-150`}
                             >
+                                <td>
+                                    <h2 className={`pl-4`}>{startIndex + index + 1}</h2>
+                                </td>
                                 <td className="p-2">
                                     <div className="w-[80px] h-[80px] overflow-hidden rounded-md">
                                         <Image

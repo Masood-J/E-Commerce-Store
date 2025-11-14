@@ -55,7 +55,7 @@ export default function AccountPage() {
         FetchOrderHistory();
     }, [user]);
 
-    async function handleLogout() {
+   async function handleLogout() {
         try {
             await signOut(auth);
             dispatch(clearUser());
