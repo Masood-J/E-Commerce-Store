@@ -5,11 +5,11 @@ import {signInWithEmailAndPassword} from "firebase/auth"
 import {auth, db} from "@/lib/firebase/firebase";
 import {setUser} from "@/features/userSlice";
 import {doc, getDoc, getDocs} from "firebase/firestore";
-import {useRouter,useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {setLogin} from "@/features/userSlice";
 import Link from "next/link";
 import {LoadCart} from "@/lib/firebase/loadCart";
-import {enableCartSync,disableCartSync} from "@/lib/firebase/syncCart";
+import {enableCartSync, disableCartSync} from "@/lib/firebase/syncCart";
 
 export default function AccountManagement() {
     const [email, setEmail] = useState('');
@@ -21,6 +21,7 @@ export default function AccountManagement() {
     const loggedIn = useSelector(state => state.auth.loggedIn);
     const searchParams = useSearchParams();
     const redirect = searchParams.get("redirect") || "/";
+
     async function HandleLogin() {
         setLoading(true);
         try {
@@ -41,7 +42,7 @@ export default function AccountManagement() {
             setError("");
             console.log("Signed in:", user.email);
             disableCartSync();
-            await LoadCart(user.uid,dispatch)
+            await LoadCart(user.uid, dispatch)
             enableCartSync();
             router.push(redirect);
             dispatch(setLogin(true));
@@ -82,7 +83,8 @@ export default function AccountManagement() {
                             onClick={HandleLogin}>Sign
                         in
                     </button>
-                    <Link href={`/account/register`}><div className={`text-[15px] leading-[29px] cursor-pointer`}>Create Account</div>
+                    <Link href={`/account/register`}>
+                        <div className={`text-[15px] leading-[29px] cursor-pointer`}>Create Account</div>
                     </Link>
                 </div>
             </div>

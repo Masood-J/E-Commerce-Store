@@ -49,21 +49,7 @@ export default function CasualPage() {
                         path={`casual`}></ItemCard>))}
                 </div>
             </main>
-            <div
-                className={`border-1 p-2 px-6 cursor-pointer hover:bg-black hover:text-white transition duration-300 ease-in-out`}>
-                <button onClick={addItem} className={`cursor-pointer`}>Add Item</button>
-            </div>
-            {IsAdding && (
 
-                <div className={`fixed inset-0 bg-black/20  flex justify-center items-center`}
-                     onClick={addItem}>
-                    <AddItems addItem={addItem} fetchProducts={()=>{
-                        fetchProducts();
-                    }}></AddItems>
-                </div>
-            )
-
-            }
 
 
         </div>

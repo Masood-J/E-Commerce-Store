@@ -5,7 +5,7 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import {arrayUnion, doc, serverTimestamp, updateDoc} from "firebase/firestore";
+import {addDoc, arrayUnion, collection, doc, serverTimestamp, updateDoc} from "firebase/firestore";
 import {auth, db} from "@/lib/firebase/firebase";
 
 export default function CheckoutPage() {
@@ -43,13 +43,19 @@ export default function CheckoutPage() {
             shippingAddress: data.shipping,
             status: "Pending",
             orderDate: orderDate,
+            email:`${data.contact.Email}`,
         };
 
         if (user) {
             const userRef = doc(db, "users", user.uid);
+            const orderRef = await addDoc(collection(db, "orders"), newOrder);
+
+
             await updateDoc(userRef, {
                 orders: arrayUnion(newOrder),
             });
+            const userCartRef = doc(db, "users", user.uid);
+            await updateDoc(userCartRef, { cart: [] });
         }
         router.push(`/checkout/${orderId}`);
     }

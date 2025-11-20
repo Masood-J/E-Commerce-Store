@@ -83,7 +83,7 @@ export default function AccountPage() {
                     <button onClick={handleLogout} className={`cursor-pointer`}>LOG OUT</button>
                 </div>
                 <div>
-                    <h2 className="text-[24px] font-bold">Order History</h2>
+                    <h2 className="text-[24px] font-bold pb-5">Order History</h2>
                     {loading && (<div>
                         <h4 className="text-[16px] text-blue-500">Fetching Order History..</h4>
                     </div>)}
@@ -99,7 +99,7 @@ export default function AccountPage() {
                         <h3>PAYMENT</h3>
                         <h3>TOTAL</h3>
                     </div>
-                    <div className="divide-y mx-10">
+                    <div className="divide-y divide-y-0 mx-10">
                         {pastOrders.map((order) => (
                             <div
                                 key={order.orderId}

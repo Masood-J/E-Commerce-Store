@@ -23,14 +23,14 @@ export default function ShirtsPage() {
 
     useEffect(() => {
         async function fetchProducts() {
-            const querySnapshot = await getDocs(collection(db, "product","catalog","shirts"));
+            const querySnapshot = await getDocs(collection(db, "product", "catalog", "shirts"));
             const items = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
             setProducts(items)
             setLoading(false);
         }
 
         fetchProducts();
-    }, );
+    },);
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -44,26 +44,12 @@ export default function ShirtsPage() {
             <main className={`mt-8 pt-5`}>
                 <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center`}>
                     {products.map(product => (
-                        <ItemCard key={product.id} id={product.id} src={product.image} name={product.name} category={product.category}
+                        <ItemCard key={product.id} id={product.id} src={product.image} name={product.name}
+                                  category={product.category}
                                   price={product.price}
                                   path={`shirts`}></ItemCard>))}
                 </div>
             </main>
-            <div
-                className={`border-1 p-2 px-6 cursor-pointer hover:bg-black hover:text-white transition duration-300 ease-in-out`}>
-                <button onClick={addItem} className={`cursor-pointer`}>Add Item</button>
-            </div>
-            {IsAdding && (
-
-                <div className={`fixed inset-0 bg-black/20  flex justify-center items-center`}
-                     onClick={addItem}>
-                    <AddItems addItem={addItem} fetchProducts={()=>{
-                        fetchProducts();
-                    }}></AddItems>
-                </div>
-            )
-
-            }
 
 
         </div>

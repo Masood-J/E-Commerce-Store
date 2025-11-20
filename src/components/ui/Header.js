@@ -65,7 +65,7 @@ export default function Header({setShowCart, setShowNav}) {
             <div className={`flex flex-row gap-10 items-center mr-5 `}>
                 <LightToggle></LightToggle>
                 {!AdminUi && <Search className={``}></Search>}
-                <Link href={loggedin ? (isAdmin ? "/admin/products" : "/account") : "/account/login"}
+                <Link href={loggedin ? (isAdmin ? "/admin/dashboard" : "/account") : "/account/login"}
                       >
                     <User className={`w-4.5 h-4.5 cursor-pointer`}></User>
                 </Link>
