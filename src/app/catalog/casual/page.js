@@ -45,7 +45,7 @@ export default function CasualPage() {
                 <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center`}>
                     {products.map(product => (
                         <ItemCard key={product.id} id={product.id} src={product.image} name={product.name} category={product.category}
-                                  price={product.price}
+                                  price={product.price} isNew={product.isNew}
                         path={`casual`}></ItemCard>))}
                 </div>
             </main>

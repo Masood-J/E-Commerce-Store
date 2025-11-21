@@ -8,8 +8,9 @@ import {useState} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {useEffect, useRef} from "react";
 import {useSelector} from "react-redux";
+import { usePathname } from "next/navigation";
 
-export default function ItemCard({src, category, name, price, id, path}) {
+export default function ItemCard({src, category, name, price, id, path,isNew}) {
     const itemObject = {
         name: name, category: category, price: price, src: src, id: id
     }
@@ -17,6 +18,8 @@ export default function ItemCard({src, category, name, price, id, path}) {
     const dispatch = useDispatch();
     const selectorRef = useRef(null);
     const darkmode = useSelector(state => state.ui.darkmode);
+    const pathname = usePathname();
+    const AtHome=pathname==='/'
     useEffect(() => {
         function handleClickOutside(event) {
             // if click is outside selectorRef, close selector
@@ -36,18 +39,24 @@ export default function ItemCard({src, category, name, price, id, path}) {
 
     return (
 
-        <div className={`font-sf mb-2 w-[370px] ${darkmode ? "bg-[#1E1E1E]" : ""}`}>
+        <div className={`font-sf mb-2 ${AtHome?"w-[270px]":"w-[370px]"} ${darkmode ? "bg-[#1E1E1E]" : ""}`}>
             <div className={`relative border-1`}>
                 <Link href={`${path}/${id}`}>
                     <div
-                        className={`relative flex items-center justify-center border-1 transition duration-300 ease-in-out hover:scale-102 cursor-pointer h-[450px]`}>
+                        className={`relative flex items-center justify-center  cursor-pointer h-[450px] overflow-hidden`}>
 
                         <Image src={src} fill alt={name}
                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                               className={`object-cover border-0`}>
+                               className={`object-cover  transition duration-300 ease-in-out hover:scale-102`}>
                         </Image>
                     </div>
                 </Link>
+                {!AtHome && isNew && (
+                    <div className="absolute top-3 left-3 bg-black text-white text-xs px-2 py-1 rounded-full">
+                        NEW
+                    </div>
+                )}
+                {!AtHome &&
                 <div
                     className={`rounded-full absolute left-1/2 bottom-0 -translate-x-1/2 ${selectSize ? "-translate-y-0" : "-translate-1/2"}  ${selectSize ? "" : "bg-white opacity-65"} ${selectSize ? "" : "p-1.5"} font-sf`}
                     ref={selectorRef}>
@@ -108,7 +117,7 @@ export default function ItemCard({src, category, name, price, id, path}) {
                                               }}></Plus>}
 
 
-                </div>
+                </div>}
             </div>
             <div className={`border-1 border-t-0 border-black`}>
                 <Link href={`polo/${id}`}>

@@ -12,6 +12,7 @@ export async function fetchAllProducts() {
 
     const promises = categories.map(async (cat) => {
         const querySnapshot = await getDocs(collection(db, "product", "catalog", cat));
+
         return querySnapshot.docs.map((doc) => ({
             id: doc.id,
             category: cat,
@@ -56,7 +57,7 @@ export default function Search(props) {
     const QueryRes = () => {
         if (query) {
             return <div className={`px-10 pt-4 grid grid-cols-4 gap-2 place-items-center font-sf pb-2`}>
-                {searchedResults.map(product => <Link href={`/catalog/${product.category.toLowerCase()}/${product.id}`}
+                {searchedResults.map(product => <Link href={`/catalog/${product.category === "Polo Shirts" ? "polo" : product.category.toLowerCase()}/${product.id}`}
                                                       onClick={()=>{
                                                           setToggle(false);
                                                           setQuery("")

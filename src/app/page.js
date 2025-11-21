@@ -1,8 +1,28 @@
+"use client";
 import HeroCarousal from "@/components/ui/HeroCarousal"
 import Image from "next/image"
 import Link from "next/link"
-
+import {fetchAllProducts} from "@/components/ui/Search";
+import {useEffect, useState} from "react";
+import ProductSlider from "@/components/ui/ProductSlider";
 export default function Home() {
+    const [loading, setLoading] = useState(false);
+    const [all, setAll] = useState([]);
+    useEffect(() => {
+        (async () => {
+            try {
+                setLoading(true);
+                const all = await fetchAllProducts();
+                setAll(all);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, []);
+
+    const filteredProducts = all.filter(product => product.isNew === true);
 
     const featured_products = [{
         name: "Shirts", id: 1, image: "/man-shirts.jpg",
@@ -49,6 +69,18 @@ export default function Home() {
             })}
         </div>
         <h2 className={`text-center text-5xl font-pep my-14 `}>New Arrivals</h2>
+<div className={`flex flex-row gap-2 justify-around mt-5`}>
+    {loading ? (
+        <div className="w-full flex justify-center items-center py-10">
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    ) : (
+        <ProductSlider products={filteredProducts} />
+    )}
+
+
+</div>
+
 
     </main>);
 }

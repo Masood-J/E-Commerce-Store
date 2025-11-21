@@ -7,8 +7,10 @@ import {Minus} from "lucide-react";
 import {Plus} from "lucide-react";
 import {useDispatch} from "react-redux";
 import {removeQuantity,addQuantity} from "@/features/cartSlice"
+import {useRouter} from "next/navigation";
 export default function Page() {
 const {items:cart,totalPrice}=useSelector(state=>state.cart);
+const router=useRouter();
 const dispatch=useDispatch();
     return (
         <div className={`flex flex-col gap-2 mx-10 font-sf`}>
@@ -66,8 +68,14 @@ dispatch(removeQuantity(item))
     <h2 className={`font-semibold text-[16px] text-[#000000bf]`}>${totalPrice}</h2>
 </div>
                 <p className={`text-[13px]`}>Taxes and shipping calculated at checkout</p>
-                <button className={`text-center bg-black text-white w-80 h-9 text-[13px] cursor-pointer`}>CHECK OUT</button>
-                <button className={`text-center border-1 w-80 h-9 text-[13px] cursor-pointer`}>CONTINUE SHOPPING</button>
+                <button className={`text-center bg-black text-white w-80 h-9 text-[13px] cursor-pointer`}
+                onClick={()=>{
+                    router.push("/checkout")
+                }}>CHECK OUT</button>
+                <button className={`text-center border-1 w-80 h-9 text-[13px] cursor-pointer`}
+                onClick={()=>{
+                    router.push("/")
+                }}>CONTINUE SHOPPING</button>
             </div>
         </div>
     )

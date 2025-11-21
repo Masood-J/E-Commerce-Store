@@ -46,7 +46,7 @@ export default function OuterPage() {
                     {products.map(product => (
                         <ItemCard key={product.id} id={product.id} src={product.image} name={product.name}
                                   category={product.category}
-                                  price={product.price}
+                                  price={product.price} isNew={product.isNew}
                                   path={`outerwear`}></ItemCard>))}
                 </div>
             </main>
